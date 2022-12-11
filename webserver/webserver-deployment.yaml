@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: webserver
+  name: webserver
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: webserver
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: webserver
+    spec:
+      volumes:
+        - name: pvc-webserver
+          persistentVolumeClaim:
+            claimName: pvc-webserver
+      containers:
+      - image: nginx
+        ports:
+        - containerPort: 80
+          name: "http-server"
+        name: nginx
+        volumeMounts:
+        - mountPath: "/usr/share/nginx/html"
+          name: pvc-webserver
+status: {}
