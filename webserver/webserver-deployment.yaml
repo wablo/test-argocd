@@ -22,7 +22,7 @@ spec:
           persistentVolumeClaim:
             claimName: pvc-webserver
       containers:
-      - image: nginx
+      - image: nginx:1.23.2-alpine
         ports:
         - containerPort: 80
           name: "http-server"
